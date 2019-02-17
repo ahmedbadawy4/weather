@@ -3,28 +3,46 @@
  weather is a web API to get the weather forecast, it has 2 endpoints `/weather` and `/version`, it's able to handle hundreds of millions of requests and the output will be in JSON.
 
 
-## Installation
+## try it on the fly
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 
 ```bash
 pip install -r requirements.txt
+python app.py
 ```
+in your browser type 
+* <machine_IP>:5000/weather
+* <machine_IP>:5000/version  
 
-## Usage
+## weather in:
 
-### On Docker container:
+* ### Docker
 
 ```bash
-
+docker build api/weather .              #replace api with your dockerhub username
+docker run -p 5000:5000 api/weather     #replace api with your dockerhub username
+curl <machine_ip>:5000/weather          
+curl <machine_ip>:5000/version
 ```
-### on bagrant
+* ### Vagrant
+Step 1: [Download and Install Vagrant](https://www.vagrantup.com/downloads.html)
 
+Step 2: [Download and Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
+```bash
+vagrant up      
+#Waiting for machine to boot and applying configurations. This may take a few minutes...
+```
+The network configurations set as public, bridged and port forwarding configuration uses port `8080` in host and ```5000``` in guest you can change it from `Vagrantfile`. see more in [Vagrant Networking](https://www.vagrantup.com/docs/networking/)
 
+In your local browser type 
+* localhost:8080/weather
+* localhost:8080/version 
 
-### on kubernetes cluster
-
+* ### kubernetes
+```bash
+```
 
 
 
