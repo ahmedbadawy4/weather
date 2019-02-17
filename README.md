@@ -8,6 +8,7 @@
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 
 ```bash
+git clone https://github.com/ahmedbadawy4/weather.git
 pip install -r requirements.txt
 python app.py
 ```
@@ -20,8 +21,9 @@ in your browser type
 * ### Docker
 
 ```bash
-docker build api/weather .              #replace api with your dockerhub username
-docker run -p 5000:5000 api/weather     #replace api with your dockerhub username
+export DOCKER_REPO=<docker-hub-user>
+docker build $DOCKER_REPO/weather_api .
+docker run -p 5000:5000 $DOCKER_REPO/weather_api
 curl <machine_ip>:5000/weather          
 curl <machine_ip>:5000/version
 ```
@@ -31,6 +33,7 @@ Step 1: [Download and Install Vagrant](https://www.vagrantup.com/downloads.html)
 Step 2: [Download and Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 ```bash
+git clone https://github.com/ahmedbadawy4/weather.git
 vagrant up      
 #Waiting for machine to boot and applying configurations. This may take a few minutes...
 ```
