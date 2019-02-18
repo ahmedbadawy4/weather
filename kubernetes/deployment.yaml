@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
       - name: weather
+        ##image: $DOCKER_REPO/weather:BUILD_NUMBER   ## uncomment this line when using jenkins build
         image: devopsahmed/weather:0.1
         imagePullPolicy: Always
         ports:
@@ -30,4 +31,10 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
-      restartPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      restartPolicy: OnFailure

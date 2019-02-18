@@ -1,22 +1,8 @@
 # weather
 
- weather is a web API to get the weather forecast, it has 2 endpoints `/weather` and `/version`, it's able to handle hundreds of millions of requests and the output will be in JSON.
+ weather is a web API to get the weather forecast, it has 2 endpoints `/weather` and `/version`, it's able to handle hundreds of millions of requests and the output will be in JSON. 
 
-
-## try it on the fly
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
-
-```bash
-git clone https://github.com/ahmedbadawy4/weather.git
-pip install -r requirements.txt
-python app.py
-```
-in your browser type 
-* localhost:5000/weather
-* localhost:5000/version  
-
-## weather in:
+## Run weather API in:
 
 * ### Docker
 
@@ -44,11 +30,12 @@ In your local browser type
 * localhost:8080/weather
 * localhost:8080/version 
 
-* ### kubernetes [minikube]
+* ### kubernetes [Minikube]
+Step 1: [instal Virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
-Step 1: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+Step 2: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
-Step 2:
+Step 3:
 ```bash
 git clone https://github.com/ahmedbadawy4/weather.git
 kubectl apply -f kubernetes
@@ -63,6 +50,25 @@ curl -v http://minikube_ip:NodePort/weather
 ```
 
 
+## CI/CD:
+
+user ```Jenkinsfile``` to deploy this application using Jenkins Pipeline in kubernetes cluster
+
+
+
+
+## local ```for development```
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
+
+```bash
+git clone https://github.com/ahmedbadawy4/weather.git
+pip install -r requirements.txt
+python app.py
+```
+in your browser type 
+* localhost:5000/weather
+* localhost:5000/version 
 
 
 ## Contributing
