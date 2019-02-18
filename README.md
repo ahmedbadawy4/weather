@@ -13,14 +13,15 @@ pip install -r requirements.txt
 python app.py
 ```
 in your browser type 
-* <machine_IP>:5000/weather
-* <machine_IP>:5000/version  
+* localhost:5000/weather
+* localhost:5000/version  
 
 ## weather in:
 
 * ### Docker
 
 ```bash
+git clone https://github.com/ahmedbadawy4/weather.git
 export DOCKER_REPO=<docker-hub-user>
 docker build $DOCKER_REPO/weather_api .
 docker run -p 5000:5000 $DOCKER_REPO/weather_api
@@ -43,8 +44,22 @@ In your local browser type
 * localhost:8080/weather
 * localhost:8080/version 
 
-* ### kubernetes
+* ### kubernetes [minikube]
+
+Step 1: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+
+Step 2:
 ```bash
+git clone https://github.com/ahmedbadawy4/weather.git
+kubectl apply -f kubernetes
+# wait until you get the pod running and ready
+#then:
+kubectl get svc  # to get nodeport
+minikube ip      # to get minikube ip
+
+check the app
+curl -v http://minikube_ip:NodePort/version
+curl -v http://minikube_ip:NodePort/weather
 ```
 
 
