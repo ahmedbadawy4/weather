@@ -21,7 +21,6 @@ pipeline {
                     	}
             		}
 				}
-			}
         
         stage('Deploy dev') {
 	    	agent {
@@ -33,8 +32,6 @@ pipeline {
 	       	}
    	 	}
 	}
-}
-
 def deployImage(environmentName){
     sh """
 		sed -i 's~DOCKER_REPO~${DOCKER_REPO}~' kubernetes/deployment.yml   ## add variable in deployment file
