@@ -13,8 +13,14 @@ version = [ { 'Version': '0.0.1' }  ]
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')
-    data = query_api(city)
-    return jsonify({'weather': data})
+    units = request.args.get('units')
+    country = request.args.get('country')
+    av_temp = request.args.get('av_temp')
+    av_wind = request.args.get('av_wind')
+    data = query_api(city, country, units, av_temp, av_wind)
+    return jsonify({'weather': data,
+                        'av_temp': av_temp,
+                        'av_wind': av_wind})
 
 
 #GET /version
