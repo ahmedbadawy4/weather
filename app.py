@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 version = [ { 'Version': '0.0.1' }  ]
 
-#GET /weather?city=cairo
+#GET /weather?city=<city>,<county_code>&av_temp=<temp_threshold>&av_wind=<wind_threshold>
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city')
@@ -18,12 +18,26 @@ def get_weather():
     av_temp = request.args.get('av_temp')
     av_wind = request.args.get('av_wind')
     data = query_api(city, country, units, av_temp, av_wind)
-#    for temp in data["weather"][0]["main"]:
-#                if temp >= av_temp:
-#                         return jsonify({'temprature': temp})                      
-    return jsonify({'weather': data,
-                        'av_temp': av_temp,
-                        'av_wind': av_wind})
+    temp_data = data['main']['temp']
+    wind_data = data['wind']['speed']
+    humidity_data = data['main']['humidity']
+    
+    if wind_data <= av_wind and temp_data >= av_temp:
+            return jsonify({'the wind is so cool': wind_data,
+                            'the temprature is so cool': temp_data})
+    elif wind_data >= av_wind and temp_data <= av_temp:
+            return jsonify({'wind speed is not safe to go outside': wind_data, 
+                                        'temprature is cold': temp_data})
+    elif wind_data <= av_wind and temp_data <= av_temp:
+            return jsonify({'the wind is so cool': wind_data,
+                                        'temprature is cold': temp_data})
+    elif wind_data >= av_wind and temp_data >= av_temp:
+            return jsonify({'wind speed is not safe  it sould not go outside': wind_data,
+                                        'temprature is cool': temp_data})
+
+    
+    
+#    return jsonify({'Temprature in Kelvin': temp_data, 'Wind Speed': wind_data, 'Humidity': humidity_data, 'temprature threshold': av_temp, 'Wind Speed threshold': av_wind})
 
 
 #GET /version
