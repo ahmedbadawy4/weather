@@ -18,6 +18,9 @@ def get_weather():
     av_temp = request.args.get('av_temp')
     av_wind = request.args.get('av_wind')
     data = query_api(city, country, units, av_temp, av_wind)
+#    for temp in data["weather"][0]["main"]:
+#                if temp >= av_temp:
+#                         return jsonify({'temprature': temp})                      
     return jsonify({'weather': data,
                         'av_temp': av_temp,
                         'av_wind': av_wind})
