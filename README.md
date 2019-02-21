@@ -1,8 +1,30 @@
-# weather
+# weather ☀️☔️
 
- weather is a web API to get the weather forecast, it has 2 endpoints `/weather` and `/version`, it's able to handle hundreds of millions of requests and the output will be in JSON. 
+ This is a Flask (Python) application uses to get the weather forecast, it has 2 endpoints `/weather` and `/version`, it's able to get the weather forecast for any city, the output will be in JSON. 
+### prerequisites:
+- Add environment variables
+  - `API_KEY="###############";`. The weather_key is the API key received from registering at [weather Map](https://openweathermap.org)
+```bash
+  export API_key="#####################"
+```
 
-## Run weather API in:
+## local ```for development```
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
+
+```bash
+git clone https://github.com/ahmedbadawy4/weather.git
+pip install -r requirements.txt
+python app.py
+```
+in your favorite browser or seb GET from postman
+* localhost:5000/weather?city=<CityName>
+
+* localhost:5000/version 
+
+     ### important notes:
+- use this [URL](https://openweathermap.org/api) for a wide range of days depending on your project.
+## Run weather API on:
 
 * ### Docker
 
@@ -11,7 +33,7 @@ git clone https://github.com/ahmedbadawy4/weather.git
 export DOCKER_REPO=<docker-hub-user>
 docker build $DOCKER_REPO/weather_api .
 docker run -p 5000:5000 $DOCKER_REPO/weather_api
-curl <machine_ip>:5000/weather          
+curl <machine_ip>:5000/weather?city=cairo          
 curl <machine_ip>:5000/version
 ```
 * ### Vagrant
