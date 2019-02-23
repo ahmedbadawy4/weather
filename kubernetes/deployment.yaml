@@ -21,6 +21,9 @@ spec:
         ##image: $DOCKER_REPO/weather:BUILD_NUMBER   ## uncomment this line when using jenkins build
         image: devopsahmed/weather:0.1
         imagePullPolicy: Always
+        env:
+        - name: API_TOKEN
+          value: "<your_API_KEY>"
         ports:
           - containerPort: 5000
             protocol: TCP

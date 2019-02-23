@@ -85,12 +85,19 @@ Step 2: [install minikube](https://kubernetes.io/docs/tasks/tools/install-miniku
 
 Step 3:
 ```bash
+#clone
 git clone https://github.com/ahmedbadawy4/weather.git
+
+#add your API_KEY in deployment file
+
 kubectl apply -f kubernetes
 # wait until you get the pod running and ready
-#then:
-kubectl get svc  # to get nodeport
-minikube ip      # to get minikube ip
+
+#then get nodeport
+kubectl get svc 
+
+# to get minikube ip
+minikube ip
 ```
 check the app version
 
@@ -114,19 +121,30 @@ http://minikube_ip:NodePort/weather?city=LONDON,GB&temp_threshold=3&wind_thresho
 ```
 
 ## CI/CD:
+1-  Assume you have already installed [jenkins on top of kubernetes](https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster)
 
-user ```Jenkinsfile``` to deploy this application using Jenkins Pipeline in kubernetes cluster by:
+2- integrate your github repository and jenkine with webhook, this [tuterial](https://www.blazemeter.com/blog/how-to-integrate-your-github-repository-to-your-jenkins-project) 
 
-* allow jenkins to access your dockerhub repository or any other private docker repository.
-* allow your agent (or master) has access to your k8s cluster and can run kubectl command.
+
+2- Add your master cluster as a node in your jenkins with label "kubectl", this [tutorial](https://jenkins.io/blog/2018/09/14/kubernetes-and-secret-agents/)
+
+
+3- Assume we're using public repository and you added dockerhub credential id like `Docker_CREDENTIALS_ID`	 in```Jenkinsfile```
+
+4- before you hit build in jenkins or commit a new changes in github you need to check the folowing 
+
 * depending on docker repository you have to comment one of the image address lines in `kubernetes/deployment.yaml` file.
-* you can configure `hpa.yaml` "horizontal pod autoscaler" depending on your project. 
+* configure `hpa.yaml` "horizontal pod autoscaler" depending on your project.
 
+* update your API_TOKEN in kubernetes/deployment.yaml file
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+```yaml
+- name: API_TOKEN
+  value: "<your_API_KEY>"
+```
 
-Please make sure to update tests as appropriate.
+5- ```build``` this jenkins job by detect any commit or manually build will build all stages and steps of pipeline in the ```Jenkinsfile```
+
 
 ## To do list:
 * add security layer to authenticate login using user and password.
@@ -134,6 +152,13 @@ Please make sure to update tests as appropriate.
 * get more information about weather and use it to make this app more efficient.
 * add UI layer to make it available to end users.
 * add monitoring layer (depending on each environment)  
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
