@@ -8,8 +8,6 @@
   export API_key="#####################"
 ```
 
-## local ```for development```
-
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 
 ```bash
