@@ -68,7 +68,7 @@ Step 2: [Download and Install VirtualBox](https://www.virtualbox.org/wiki/Downlo
 ```bash
 git clone https://github.com/ahmedbadawy4/weather.git
 vim Vagrantfile
-## add your api_key in "{"API_TOKEN" => "api_key from your account"}"
+## edit this line: echo "export API_KEY=<TOKEN>" >> ~/.profile and add your api_key TOKEN. in vagrant_provision.sh file
 vagrant up      
 #Waiting for machine to boot and applying configurations. This may take a few minutes...
 ```
