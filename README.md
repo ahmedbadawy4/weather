@@ -1,6 +1,6 @@
 # weather API Application☀️☔️ with Full CICD and automated deployment using Docker, Vagrant and Kubernetes.
 
- This is a Flask (Python) application uses to get the weather forecast for any given city, it has 2 endpoints `/weather` and `/version` and the output will be in JSON format with some measured results depending on the given threshold. 
+ This is a Flask (Python 2.7) application uses to get the weather forecast for any given city, it has 2 endpoints `/weather` and `/version` and the output will be in JSON format with some measured results depending on the given threshold. 
 ### prerequisites:
 - Add environment variables
   - `API_KEY="###############";`. The weather_key is the API key received from registering at [weather Map](https://openweathermap.org)
