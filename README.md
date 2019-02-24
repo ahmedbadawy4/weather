@@ -56,7 +56,7 @@ to get application version hit:
 git clone https://github.com/ahmedbadawy4/weather.git
 export API_key="#####################"
 export DOCKER_REPO=<docker-hub-user>
-docker build $DOCKER_REPO/weather_api .
+docker build --build-arg API_KEY=$API_KEY -t $DOCKER_REPO/weather_api .
 docker run -p 5000:5000 $DOCKER_REPO/weather_api
 ```
 
