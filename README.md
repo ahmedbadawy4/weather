@@ -60,7 +60,13 @@ docker build --build-arg API_KEY=$API_KEY -t $DOCKER_REPO/weather_api .
 docker run -p 5000:5000 $DOCKER_REPO/weather_api
 ```
 
-* ### Vagrant
+* ## Vagrant 
+
++ This part still need enhancements:-
++ I need to try another bas image
++ I need to follow some error messages appears while provisioning with the application dependencies and install requirements 
+
+
 Step 1: [Download and Install Vagrant](https://www.vagrantup.com/downloads.html)
 
 Step 2: [Download and Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -76,7 +82,7 @@ The network configurations set as public, bridged and port forwarding configurat
 
 
 
-* ### kubernetes [Minikube]
+* ## kubernetes [Minikube]
 Step 1: [instal Virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
 Step 2: [install minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
@@ -118,7 +124,7 @@ http://minikube_ip:NodePort/weather?city=LONDON,GB&temp_threshold=3&wind_thresho
 
 ```
 
-## CI/CD:
+* ## CI/CD:
 1-  Assume you have already installed [jenkins on top of kubernetes](https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster)
 
 2- integrate your github repository and jenkine with webhook, this [tuterial](https://www.blazemeter.com/blog/how-to-integrate-your-github-repository-to-your-jenkins-project) 
@@ -144,7 +150,7 @@ http://minikube_ip:NodePort/weather?city=LONDON,GB&temp_threshold=3&wind_thresho
 5- ```build``` this jenkins job by detect any commit or manually build will build all stages and steps of pipeline in the ```Jenkinsfile```
 
 
-## To do list:
+* ## To do list:
 * add security layer to authenticate login using user and password.
 * configure database to save users credentials and make flexibility in extracting data for many days and split the day to sections like, morning, midday, and night.
 * get more information about weather and use it to make this app more efficient.
